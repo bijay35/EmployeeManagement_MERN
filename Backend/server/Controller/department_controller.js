@@ -1,5 +1,6 @@
 const Departdb = require('../model/Deparment_model')
 const uuid = require('uuid')
+
 exports.getAllDepartment = async (req, res) => {
   try {
     const departement = await Departdb.find()
@@ -9,7 +10,9 @@ exports.getAllDepartment = async (req, res) => {
     res.status(500).send({ message: err.message || `Error while retrieving department information` })
   };
 }
+
 exports.createDepartment = async (req, res) => {
+  console.log("create department : 0");
   if (!req.body) {
     console.log("create department : 1");
     res.status(400).send({ message: 'Content cannot be empty!' });
