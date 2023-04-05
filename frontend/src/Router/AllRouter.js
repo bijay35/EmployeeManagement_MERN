@@ -1,23 +1,23 @@
-import {createBrowserRouter,RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { DepartmentPage } from '../Component/Department'
 import { EmpoyeePage } from '../Component/Employee'
 import { HomePage } from '../Component/Home'
-export const AllRouter =()=> {
+
+
+export const AllRouter = () => {
     const router = createBrowserRouter([
         {
-            path:'/',
-            element:<HomePage />
+            path: '/',
+            element: <HomePage />
         },
         {
-            path:'/department',
-            element:
-            localStorage.getItem('token') && <DepartmentPage />
+            path: '/department',
+            element: <DepartmentPage />
         },
         {
-            path:'/employee',
-            element:
-            localStorage.getItem('token')&& <EmpoyeePage />
+            path: '/employee',
+            element: <EmpoyeePage />
         },
-      ])
-      return  <RouterProvider router={router} />
-      }
+    ])
+    return <RouterProvider router={router} />
+}

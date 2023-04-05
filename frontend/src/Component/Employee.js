@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useReducer, useState } from "react";
 import { API_URL } from "../API_URL/api_url";
 import { NavBar } from "../Navigation Bar/header";
- const reducer = (state, action) => {
+const reducer = (state, action) => {
   switch (action.type) {
     case "ADD_EMPLOYEE":
       return {
@@ -47,7 +47,7 @@ export const EmpoyeePage = () => {
           'x-auth-token': localStorage.getItem('token')
         }
       }
-      ).then((res) => {
+    ).then((res) => {
       setEmployee(res.data);
     });
   };
@@ -59,7 +59,7 @@ export const EmpoyeePage = () => {
           'x-auth-token': localStorage.getItem('token')
         }
       }
-      ).then((res) => {
+    ).then((res) => {
       setDepartment(res.data);
     });
   };
@@ -78,10 +78,10 @@ export const EmpoyeePage = () => {
       payload: {
         modalTitle: state.modalTitle,
         EmployeeId: state.EmployeeId,
-        EmployeeName:"",
-        Department:"",
+        EmployeeName: "",
+        Department: "",
         Date_of_Joining: "",
-        PhotoFileName:"",
+        PhotoFileName: "",
       },
     });
   };
@@ -101,27 +101,27 @@ export const EmpoyeePage = () => {
 
   //    add employement
   const handleCreate = () => {
-
     const formData = new FormData();
     formData.append('EmployeeName', state.EmployeeName);
     formData.append('Department', state.Department);
     formData.append('Date_of_Joining', state.Date_of_Joining);
     formData.append('PhotoFileName', state.PhotoFileName);
-    axios.post(API_URL.EMPLOYEE, 
-        formData,
-      {
-        headers: {
+    axios.post(API_URL.EMPLOYEE, formData, {
+
+      headers: {
         'Accept': 'application/json',
-       'Content-Type': 'application/json',
-       'x-auth-token': localStorage.getItem('token')
-        }
-      })
+        'Content-Type': 'application/json',
+        // 'x-auth-token': localStorage.getItem('token')
+      }
+    })
       .then((res) => {
         alert("The Employee is successfully added!");
         window.location.reload();
+        console.log("create employee : 1");
       })
       .catch((err) => {
-        console.error(err);
+        console.log("create employee : 2");
+        console.error("err create employee = " + err);
         if (err.response) {
           alert(`Error while Creating Employee: ${err.response.data.message}`);
         } else if (err.request) {
@@ -131,6 +131,7 @@ export const EmpoyeePage = () => {
         }
       });
   };
+
   const imageUpload = (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -158,17 +159,17 @@ export const EmpoyeePage = () => {
       (emp) =>
         emp.EmployeeId === id &&
         (axios.put(`${API_URL.EMPLOYEE}${emp._id}`, {
-            EmployeeName: state.EmployeeName,
-            Department: state.Department,
-            Date_of_Joining: state.Date_of_Joining,
-            PhotoFileName: state.PhotoFileName,
-          },
+          EmployeeName: state.EmployeeName,
+          Department: state.Department,
+          Date_of_Joining: state.Date_of_Joining,
+          PhotoFileName: state.PhotoFileName,
+        },
           {
             headers: {
               'x-auth-token': localStorage.getItem('token')
             }
           }
-          )
+        )
           .then(
             (res) => {
               alert("You are Succeccfully Update Employee!");
@@ -182,11 +183,11 @@ export const EmpoyeePage = () => {
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete Employee?")) {
       axios.delete(`${API_URL.EMPLOYEE}${id}`,
-      {
-        headers: {
-          'x-auth-token': localStorage.getItem('token')
+        {
+          headers: {
+            'x-auth-token': localStorage.getItem('token')
+          }
         }
-      }
       ).then(
         (res) => {
           alert("You are Successfully Delete Employee !");
@@ -225,7 +226,7 @@ export const EmpoyeePage = () => {
             <tr key={emp._id}>
               <td data-title="ID">{emp.EmployeeId}</td>
               <td data-title="Employee Name">{emp.EmployeeName}</td>
-              <td data-title="Profile photo"><img className="rounded-circle profileImage" src={state.photoPath+emp.PhotoFileName} alt=""/></td>
+              <td data-title="Profile photo"><img className="rounded-circle profileImage" src={state.photoPath + emp.PhotoFileName} alt="" /></td>
               <td data-title="Department">{emp.Department}</td>
               <td data-title="DOJ">{emp.Date_of_Joining}</td>
               <td data-title="Action">
@@ -294,7 +295,7 @@ export const EmpoyeePage = () => {
                           },
                         })
                       }
-                    value={state.EmployeeName}/>
+                      value={state.EmployeeName} />
                   </div>
                   <div className="input-group mb-3">
                     <span className="input-group-text">Deparment:</span>
@@ -341,7 +342,7 @@ export const EmpoyeePage = () => {
                     alt=""
                     src={`${state.photoPath}${state.PhotoFileName}`}
                   />
-                  <input className="m-2" type="file" onChange={imageUpload}/>
+                  <input className="m-2" type="file" onChange={imageUpload} />
                 </div>
               </div>
               {/* button to update department  */}
