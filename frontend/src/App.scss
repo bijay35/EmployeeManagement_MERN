@@ -6,6 +6,12 @@
   margin-top: 10px;
   .row{
     margin-bottom: 5px;
+    .btn-danger{
+      a{
+        color: #fff;
+        text-decoration: none;
+      }
+    }
   }
 }
 .table-hover tbody tr:hover td {
