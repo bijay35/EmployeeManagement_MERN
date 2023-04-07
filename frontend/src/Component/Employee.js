@@ -228,7 +228,7 @@ export const EmpoyeePage = () => {
             <tr key={emp._id}>
               <td data-title="ID">{emp.EmployeeId}</td>
               <td data-title="Employee Name">{emp.EmployeeName}</td>
-              <td data-title="Profile photo"><img className="rounded-circle profileImage" src={state.photoPath + emp.PhotoFileName} alt="" /></td>
+              <td data-title="Profile photo"><img className="rounded-circle profileImage" src={state.photoPath + emp.PhotoFileName} alt="no image" /></td>
               <td data-title="Department">{emp.Department}</td>
               <td data-title="DOJ">{emp.Date_of_Joining}</td>
               <td data-title="Action">
@@ -239,7 +239,7 @@ export const EmpoyeePage = () => {
                   className="btn btn-sm shadow-lg rounded-pill text-decoration-none"
                 >
                   <span>
-                    <i class="fa-solid fa-user-pen"></i>
+                    <i className="fa-solid fa-user-pen"></i>
                   </span>
                 </button>
                 <button
