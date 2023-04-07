@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from 'react';
-import { MDBBtn, MDBRow, MDBCol } from 'mdb-react-ui-kit';
+import { MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import '.././App.scss'
 
 
@@ -20,7 +20,7 @@ export const NavBar = () => {
     <div className="navbarCustom">
       <MDBRow>
         <MDBCol>
-          <Link to="/"><MDBBtn color='danger' onClick={handleLout} className="float-end">logout</MDBBtn></Link>
+          <button type="button" class="btn btn-danger float-end" onClick={handleLout} ><Link to="/">Logout</Link></button>
         </MDBCol>
 
       </MDBRow>
