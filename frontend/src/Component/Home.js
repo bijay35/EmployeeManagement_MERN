@@ -74,8 +74,8 @@ export const HomePage = () => {
           password: state.password
         })
       localStorage.setItem('token', response.data.token)
-      alert('You are Successfully registered')
-      navigate('/department')
+      alert('You are Successfully registered, you can sign in now');
+      navigate('/')
       window.location.reload();
     } catch (err) {
       alert("Register ERROR ::  " || err.response.data);
