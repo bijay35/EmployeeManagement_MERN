@@ -23,16 +23,24 @@
 
 .homepage {
   text-align: center;
-  /* background-image: url('./assets/images/loginbackground.jpg'); */
-  height: 500px;
+  background-image: url('https://i.gifer.com/9lZ7.gif');
+  height: 440px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .viewformargin {
+
   margin-top: 110px;
   display: inline-block;
+
+  // background-image: url('https://i.gifer.com/9lZ7.gif');
+  img {
+    width: 200px;
+    height: auto;
+    margin: auto;
+  }
 
   button {
     width: 100%;

@@ -101,7 +101,7 @@ export const HomePage = () => {
   }
   return (
     <>
-      <MDBContainer fluid className="p-3 my-5">
+      <MDBContainer fluid className="p-3 my-5 Homepage">
         <MDBRow>
 
           <MDBCol col='10' md='6'>
@@ -186,7 +186,6 @@ export const HomePage = () => {
               </div>
               <div className="viewformargin">
                 <MDBRow>
-                  {/* <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg" class="img-fluid" alt="Phone image" /> */}
                   <h3>Welcome to Employee Management</h3>
                 </MDBRow>
                 <MDBRow>
