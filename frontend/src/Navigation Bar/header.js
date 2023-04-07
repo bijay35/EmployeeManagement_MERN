@@ -20,7 +20,7 @@ export const NavBar = () => {
     <div className="navbarCustom">
       <MDBRow>
         <MDBCol>
-          <button type="button" class="btn btn-danger float-end" onClick={handleLout} ><Link to="/">Logout</Link></button>
+          <button type="button" className="btn btn-danger float-end" onClick={handleLout} ><Link to="/">Logout</Link></button>
         </MDBCol>
 
       </MDBRow>

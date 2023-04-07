@@ -165,7 +165,7 @@ export const DepartmentPage = () => {
                   className="btn btn-sm shadow-lg rounded-pill text-decoration-none"
                 >
                   <span>
-                    <i class="fa-solid fa-file-pen"></i>
+                    <i className="fa-solid fa-file-pen"></i>
                   </span>
                 </button>
                 <button className="btn btn-sm shadow-lg  rounded-pill ms-2"
