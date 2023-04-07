@@ -239,10 +239,7 @@ export const EmpoyeePage = () => {
                   className="btn btn-sm shadow-lg rounded-pill text-decoration-none"
                 >
                   <span>
-                    <i
-                      className="fa-sharp fa-solid fa-pen-to-square"
-                      style={{ fontSize: "10px" }}
-                    ></i>
+                    <i class="fa-solid fa-user-pen"></i>
                   </span>
                 </button>
                 <button
