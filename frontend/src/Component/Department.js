@@ -3,6 +3,8 @@ import { NavBar } from "../Navigation Bar/header";
 import axios from "axios";
 import { API_URL } from "../API_URL/api_url";
 
+import { MDBContainer, MDBBtn, MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "ADD_DEPARTMENT":
@@ -131,7 +133,7 @@ export const DepartmentPage = () => {
   };
 
   return (
-    <div className="table-responsive navbarCustom">
+    <MDBContainer>
       <NavBar />
       {/* button to open modal window */}
       <button
@@ -142,15 +144,15 @@ export const DepartmentPage = () => {
         onClick={() => addClick()}>
         Add Department
       </button>
-      <table className="table table-hover table-sm text-center">
-        <thead className="bg-info">
+      <MDBTable hover striped bordered align='middle'>
+        <MDBTableHead dark>
           <tr>
             <th>DepartmentId</th>
             <th>DepartmentName</th>
             <th>Action</th>
           </tr>
-        </thead>
-        <tbody>
+        </MDBTableHead>
+        <MDBTableBody>
           {department.map((dep) => (
             <tr key={dep._id}>
               <td data-title="ID">{dep.DepartmentId}</td>
@@ -177,8 +179,8 @@ export const DepartmentPage = () => {
               </td>
             </tr>
           ))}
-        </tbody>
-      </table>
+        </MDBTableBody>
+      </MDBTable>
 
       <div
         className="modal fade"
@@ -230,6 +232,6 @@ export const DepartmentPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </MDBContainer>
   );
 };

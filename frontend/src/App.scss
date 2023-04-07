@@ -2,12 +2,12 @@
   margin-right: 10px;
   /* Set the margin to create space between the navbar items */
 }
-
-.navbarCustom {
-  margin: 20px;
-  margin-top: 2px;
+.navbarCustom{
+  margin-top: 10px;
+  .row{
+    margin-bottom: 5px;
+  }
 }
-
 .table-hover tbody tr:hover td {
   background: #06d6a0;
 }

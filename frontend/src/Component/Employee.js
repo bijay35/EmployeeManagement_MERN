@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useReducer, useState } from "react";
 import { API_URL } from "../API_URL/api_url";
 import { NavBar } from "../Navigation Bar/header";
+import { MDBContainer, MDBBtn, MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -200,7 +201,7 @@ export const EmpoyeePage = () => {
   };
 
   return (
-    <div className="table-responsive navbarCustom">
+    <MDBContainer>
       <NavBar />
       <button
         type="button"
@@ -211,8 +212,8 @@ export const EmpoyeePage = () => {
       >
         Add Employee
       </button>
-      <table className="table table-hover table-sm text-center">
-        <thead className="bg-info">
+      <MDBTable hover striped bordered align='middle'>
+        <MDBTableHead dark>
           <tr>
             <th>EmployeeId</th>
             <th>EmployeeName</th>
@@ -221,8 +222,8 @@ export const EmpoyeePage = () => {
             <th>Date of Joining</th>
             <th>Actions</th>
           </tr>
-        </thead>
-        <tbody>
+        </MDBTableHead >
+        <MDBTableBody>
           {employee.map((emp) => (
             <tr key={emp._id}>
               <td data-title="ID">{emp.EmployeeId}</td>
@@ -258,8 +259,8 @@ export const EmpoyeePage = () => {
               </td>
             </tr>
           ))}
-        </tbody>
-      </table>
+        </MDBTableBody>
+      </MDBTable>
 
       <div
         className="modal fade"
@@ -372,6 +373,8 @@ export const EmpoyeePage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </MDBContainer>
+
+
   );
 };
