@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useReducer, useState } from "react";
 import { API_URL } from "../API_URL/api_url";
 import { NavBar } from "../Navigation Bar/header";
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "ADD_EMPLOYEE":
@@ -33,6 +34,7 @@ const reducer = (state, action) => {
       return;
   }
 };
+
 export const EmpoyeePage = () => {
   useEffect(() => {
     getPosts();
@@ -111,7 +113,6 @@ export const EmpoyeePage = () => {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        // 'x-auth-token': localStorage.getItem('token')
       }
     })
       .then((res) => {
