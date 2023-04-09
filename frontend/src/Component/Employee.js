@@ -41,7 +41,32 @@ export const EmpoyeePage = () => {
     getPosts();
     getPostDep();
   }, []);
+  const [selectedDepartment, setSelectedDepartment] = useState("");
   const [employee, setEmployee] = useState([]);
+  const [department, setDepartment] = useState([]);
+  const [filterEmployee, setFilterEmployee] = useState([]);
+
+
+  useEffect(() => {
+    if (selectedDepartment.length !== 0 && selectedDepartment !== "All employee") {
+      console.log("selectedDepartment = " + selectedDepartment);
+
+      const filterEmp = [];
+      for (let i = 0; i < employee.length; i++) {
+        if (employee[i]['Department'] == selectedDepartment) {
+          filterEmp.push(employee[i]);
+        }
+      }
+
+      setFilterEmployee(filterEmp);
+
+    } else {
+      setFilterEmployee(employee);
+    }
+  }, [selectedDepartment]);
+
+
+
   const getPosts = () => {
     //fetching employee information
     axios.get(API_URL.EMPLOYEE,
@@ -54,7 +79,7 @@ export const EmpoyeePage = () => {
       setEmployee(res.data);
     });
   };
-  const [department, setDepartment] = useState([]);
+
   const getPostDep = () => {
     axios.get(API_URL.DEPARTMENT,
       {
@@ -218,44 +243,90 @@ export const EmpoyeePage = () => {
             <th>EmployeeId</th>
             <th>EmployeeName</th>
             <th>profile photo</th>
-            <th>Department</th>
+            <th><select
+              className="form-select"
+              onChange={(e) => setSelectedDepartment(e.target.value)}
+              value={selectedDepartment}
+            >
+              <option value="All employee">All Department</option>
+              {department.map((dep) => (
+                <option key={dep._id} value={dep.DepartmentName}>
+                  {dep.DepartmentName}
+                </option>
+              ))}
+            </select>
+            </th>
             <th>Date of Joining</th>
             <th>Actions</th>
           </tr>
         </MDBTableHead >
         <MDBTableBody>
-          {employee.map((emp) => (
-            <tr key={emp._id}>
-              <td data-title="ID">{emp.EmployeeId}</td>
-              <td data-title="Employee Name">{emp.EmployeeName}</td>
-              <td data-title="Profile photo"><img className="rounded-circle profileImage" src={state.photoPath + emp.PhotoFileName} alt="no image" /></td>
-              <td data-title="Department">{emp.Department}</td>
-              <td data-title="DOJ">{emp.Date_of_Joining}</td>
-              <td data-title="Action">
-                <button
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"
-                  onClick={() => editClick(emp)}
-                  className="btn btn-sm shadow-lg rounded-pill text-decoration-none"
-                >
-                  <span>
-                    <i className="fa-solid fa-user-pen"></i>
-                  </span>
-                </button>
-                <button
-                  className="btn btn-sm shadow-lg  rounded-pill ms-2"
-                  onClick={() => handleDelete(emp._id)}
-                >
-                  <span>
-                    <i
-                      className="fa-sharp fa-solid fa-trash"
-                      style={{ fontSize: "12px" }}
-                    ></i>
-                  </span>
-                </button>
-              </td>
-            </tr>
-          ))}
+          {filterEmployee.length == 0 ?
+            selectedDepartment.length == 0 ?
+              employee.map((emp) => (
+                <tr key={emp._id}>
+                  <td data-title="ID">{emp.EmployeeId}</td>
+                  <td data-title="Employee Name">{emp.EmployeeName}</td>
+                  <td data-title="Profile photo"><img className="rounded-circle profileImage" src={state.photoPath + emp.PhotoFileName} alt="no image" /></td>
+                  <td data-title="Department">{emp.Department}</td>
+                  <td data-title="DOJ">{emp.Date_of_Joining}</td>
+                  <td data-title="Action">
+                    <button
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                      onClick={() => editClick(emp)}
+                      className="btn btn-sm shadow-lg rounded-pill text-decoration-none"
+                    >
+                      <span>
+                        <i className="fa-solid fa-user-pen"></i>
+                      </span>
+                    </button>
+                    <button
+                      className="btn btn-sm shadow-lg  rounded-pill ms-2"
+                      onClick={() => handleDelete(emp._id)}
+                    >
+                      <span>
+                        <i
+                          className="fa-sharp fa-solid fa-trash"
+                          style={{ fontSize: "12px" }}
+                        ></i>
+                      </span>
+                    </button>
+                  </td>
+                </tr>
+              )) : <tr><td>No Data Presence</td></tr> :
+            filterEmployee.map((emp) => (
+              <tr key={emp._id}>
+                <td data-title="ID">{emp.EmployeeId}</td>
+                <td data-title="Employee Name">{emp.EmployeeName}</td>
+                <td data-title="Profile photo"><img className="rounded-circle profileImage" src={state.photoPath + emp.PhotoFileName} alt="no image" /></td>
+                <td data-title="Department">{emp.Department}</td>
+                <td data-title="DOJ">{emp.Date_of_Joining}</td>
+                <td data-title="Action">
+                  <button
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    onClick={() => editClick(emp)}
+                    className="btn btn-sm shadow-lg rounded-pill text-decoration-none"
+                  >
+                    <span>
+                      <i className="fa-solid fa-user-pen"></i>
+                    </span>
+                  </button>
+                  <button
+                    className="btn btn-sm shadow-lg  rounded-pill ms-2"
+                    onClick={() => handleDelete(emp._id)}
+                  >
+                    <span>
+                      <i
+                        className="fa-sharp fa-solid fa-trash"
+                        style={{ fontSize: "12px" }}
+                      ></i>
+                    </span>
+                  </button>
+                </td>
+              </tr>
+            ))}
         </MDBTableBody>
       </MDBTable>
 
