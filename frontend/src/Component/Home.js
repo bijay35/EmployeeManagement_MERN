@@ -78,7 +78,7 @@ export const HomePage = () => {
       navigate('/')
       window.location.reload();
     } catch (err) {
-      alert("Register ERROR ::  " || err.response.data);
+      alert("Register ERROR ::  Use correct email and password" || err.response.data);
     }
   }
 
